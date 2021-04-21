@@ -1,0 +1,40 @@
+{
+  "journeys": [
+    {
+      "id": 1,
+      "name": "envio de PDF",
+      "status": "1",
+      "numberOfAccesses": 478
+    },
+    {
+      "id": 2,
+      "name": "deletar conta",
+      "status": "1",
+      "numberOfAccesses": 28711
+    },
+    {
+      "id": 3,
+      "name": "verificar saldo",
+      "status": "1",
+      "numberOfAccesses": 1000000
+    },
+    {
+      "id": 4,
+      "name": "transferencia de dinheiro",
+      "status": "1",
+      "numberOfAccesses": 645293
+    },
+    {
+      "id": 5,
+      "name": "segunda via de comprovante",
+      "status": "1",
+      "numberOfAccesses": 339221
+    },
+    {
+      "id": 6,
+      "name": "pagamento de boleto",
+      "status": "1",
+      "numberOfAccesses": 80776
+    }
+  ]
+}
