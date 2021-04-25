@@ -1,4 +1,3 @@
-import { Component, OnInit } from '@angular/core';
 import { DataSource } from '@angular/cdk/collections';
 import { Observable, of as observableOf, merge } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -7,37 +6,16 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Journey } from '../journey.model';
 
-const EXAMPLE_DATA: Journey[] = [
-  {id: 1, name: 'Hydrogen', status: '1', numberOfAccesses: 999},
-  {id: 2, name: 'Helium', status: '1', numberOfAccesses: 999},
-  {id: 3, name: 'Lithium', status: '1', numberOfAccesses: 999},
-  {id: 4, name: 'Beryllium', status: '1', numberOfAccesses: 999},
-  {id: 5, name: 'Boron', status: '1', numberOfAccesses: 999},
-  {id: 6, name: 'Carbon', status: '1', numberOfAccesses: 999},
-  {id: 7, name: 'Nitrogen', status: '1', numberOfAccesses: 999},
-  {id: 8, name: 'Oxygen', status: '1', numberOfAccesses: 999},
-  {id: 9, name: 'Fluorine', status: '1', numberOfAccesses: 999},
-  {id: 10, name: 'Neon', status: '1', numberOfAccesses: 999},
-  {id: 11, name: 'Sodium', status: '1', numberOfAccesses: 999},
-  {id: 12, name: 'Magnesium', status: '1', numberOfAccesses: 999},
-  {id: 13, name: 'Aluminum', status: '1', numberOfAccesses: 999},
-  {id: 14, name: 'Silicon', status: '1', numberOfAccesses: 999},
-  {id: 15, name: 'Phosphorus', status: '1', numberOfAccesses: 999},
-  {id: 16, name: 'Sulfur', status: '1', numberOfAccesses: 999},
-  {id: 17, name: 'Chlorine', status: '1', numberOfAccesses: 999},
-  {id: 18, name: 'Argon', status: '1', numberOfAccesses: 999},
-  {id: 19, name: 'Potassium', status: '1', numberOfAccesses: 999},
-  {id: 20, name: 'Calcium', status: '1', numberOfAccesses: 999},
-];
+import { JourneyService } from '../journey.service';
 
 /**
  * Data source for the ProductRead2 view. This class should
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
-export class JourneyRead2DataSource extends DataSource<Journey> {
+export class JourneyReadDataSource extends DataSource<Journey> {
 
-  data: Journey[] = EXAMPLE_DATA;
+  data: Journey[];
   paginator: MatPaginator;
   sort: MatSort;
 

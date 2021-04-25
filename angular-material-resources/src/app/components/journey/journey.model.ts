@@ -1,6 +1,6 @@
 export interface Journey {
     id?: number
     name: string
-    status: boolean
+    status: string
     numberOfAccesses: number
 }

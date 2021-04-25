@@ -26,8 +26,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { JourneyRead2Component } from './components/journey/journey-read2/journey-read2.component';
-// import { MatFormFieldModule } from '@angular/material/form-field';
-// import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 registerLocaleData(localePt);
 
@@ -56,7 +56,9 @@ registerLocaleData(localePt);
     MatSnackBarModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [{
     provide: LOCALE_ID,
