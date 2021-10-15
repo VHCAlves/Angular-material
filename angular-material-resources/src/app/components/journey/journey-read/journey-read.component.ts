@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { MatTableDataSource } from '@angular/material/table';
 
 import { Journey } from '../journey.model';
 import { JourneyService } from '../journey.service';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-journey-read',
@@ -19,48 +22,39 @@ import { JourneyService } from '../journey.service';
 })
 export class JourneyReadComponent implements OnInit {
 
-  public journeys;
-  public displayedColumns: string[] = ['id', 'name', 'status'];
+  public journeys = new MatTableDataSource();
+  public displayedColumns: string[] = ['id', 'name', 'status', 'numberOfAccesses'];
+
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   
   constructor(private journeyService: JourneyService) { }
-
+  
   ngOnInit(): void {
-    this.journeyService.read().subscribe(journeys => {
-      this.troca(journeys);
+    this.journeyService.read().subscribe((data: Array<Journey>) => {
+      this.troca(data);
+      this.journeys.paginator = this.paginator;
+      this.journeys.sort = this.sort;
     });
+  }
+
+  public troca(response: Array<Journey>): any {
+    response.map((r: Journey) => {
+      return r.status = r.status === "1" ? "on" : "off";
+    })
+    this.journeys = new MatTableDataSource(response);
   }
 
   public applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.journeys.filter = filterValue.trim().toLowerCase();
+
+    if (this.journeys.paginator) {
+      this.journeys.paginator.firstPage();
+    }
   }
 
-  public troca(journeys: Journey[]): any {
-    journeys.map(r => {
-      if(r.status === "1") r.status = "on";
-      else r.status = "off";
-    })
-    this.journeys = new MatTableDataSource(journeys);
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.displayedColumns, event.previousIndex, event.currentIndex);
   }
-
-  // public sortData(sort: Sort) {
-  //   const data = this.journeys.slice();
-  //   if (!sort.active || sort.direction === '') {
-  //     this.journeys = data;
-  //     return;
-  //   }
-
-  //   this.sortedData = data.sort((a, b) => {
-  //     const isAsc = sort.direction === 'asc';
-  //     switch (sort.active) {
-  //       case 'name': return compare(a.name, b.name, isAsc);
-  //       case 'id': return compare(a.id, b.id, isAsc);
-  //       default: return 0;
-  //     }
-  //   });
-  // }
 }
-
-// function compare(a: number | string, b: number | string, isAsc: boolean) {
-//   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
-// }

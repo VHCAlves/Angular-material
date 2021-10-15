@@ -29,8 +29,8 @@ export class JourneyService {
     });
   }
 
-  public read(): Observable<Journey[]> {
-    return this.http.get<Journey[]>(this.baseUrl).pipe(
+  public read(): Observable<Array<Journey>> {
+    return this.http.get<Array<Journey>>(this.baseUrl).pipe(
       map((obj) => obj),
       catchError((e) => this.errorHandler(e))
     );

@@ -28,6 +28,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { JourneyRead2Component } from './components/journey/journey-read2/journey-read2.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 registerLocaleData(localePt);
 
@@ -40,7 +41,7 @@ registerLocaleData(localePt);
     HomeComponent,
     JourneysComponent,
     JourneyReadComponent,
-    JourneyRead2Component
+    JourneyRead2Component,
   ],
   imports: [
     BrowserModule,
@@ -58,7 +59,8 @@ registerLocaleData(localePt);
     MatPaginatorModule,
     MatSortModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    DragDropModule
   ],
   providers: [{
     provide: LOCALE_ID,
